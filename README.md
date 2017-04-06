@@ -6,14 +6,14 @@ $ git clone https://github.com/onlythenaive/tjs-frontend-live.git
 $ cd tjs-frontend-live
 ```
 
-## Service Deployment
+## Deploy the Service
 ```
 $ cd service
 $ npm install
 $ npm start
 ```
 
-## Client Development
+## Deploy the Client
 ```
 $ cd client
 $ npm install
