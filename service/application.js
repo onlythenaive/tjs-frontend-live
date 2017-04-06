@@ -22,10 +22,14 @@
   path: require('path'),
 
   bootstraps: [
-    require('./user/user-bootstrap.js')
+    require('./genre/genre-bootstrap.js'),
+    require('./band/band-bootstrap.js'),
+    require('./person/person-bootstrap.js')
   ],
 
   routers: [
-    require('./user/user-router.js')
+    require('./genre/genre-router.js'),
+    require('./band/band-router.js'),
+    require('./person/person-router.js')
   ]
 });

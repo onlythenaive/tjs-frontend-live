@@ -11,7 +11,7 @@
     }
   };
 
-  it.path = '/users';
+  it.path = '/bands';
 
   it.router = imports.express.Router()
 
@@ -19,8 +19,8 @@
         response.json(imports.repository.findAll());
       })
 
-      .get('/:login', function (request, response) {
-        response.json(imports.repository.findByLogin(request.params.login));
+      .get('/:id', function (request, response) {
+        response.json(imports.repository.findById(request.params.id));
       })
 
       .post('/', function (request, response) {
@@ -30,5 +30,5 @@
 
   express: require('express'),
 
-  repository: require('./user-repository')
+  repository: require('./band-repository')
 });
