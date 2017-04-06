@@ -8,12 +8,13 @@ $ cd tjs-frontend-live
 
 ## Service Deployment
 ```
-$ cd ./service
+$ cd service
 $ npm install
 $ npm start
+```
 
 ## Client Development
 ```
-$ cd ./client
+$ cd client
 $ npm install
 $ npm start
