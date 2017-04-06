@@ -1,2 +1,1 @@
-# tjs-frontend-live
-T-Systems Java School
+# T-Systems Java School: Frontend Live

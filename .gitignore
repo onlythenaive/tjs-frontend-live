@@ -1,0 +1,8 @@
+# Node
+client/node_modules/
+server/node_modules/
+*.log
+
+# IDE
+.idea/
+*.iml
