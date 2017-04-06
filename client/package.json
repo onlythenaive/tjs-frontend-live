@@ -1,0 +1,21 @@
+{
+  "name": "tjs-frontend-live-client",
+  "description": "T-Systems Java School: Frontend Live Client",
+  "version": "1.0.0-SNAPSHOT",
+
+  "private": true,
+  "license": "MIT",
+  "author": "Ilia Gubarev",
+
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp start"
+  },
+
+  "dependencies": {
+    "command-line-args": "^3.0.1",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0"
+  }
+}
