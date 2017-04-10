@@ -7,12 +7,17 @@
   module.exports = {
 
     create: function (genre) {
-      genre.id = imports.uuid();
-      return it.collection.insertOne(genre);
+      var newGenre = {
+        id: imports.uuid(),
+        title: genre.title
+      };
+      return it.collection.insertOne(newGenre);
     },
 
     update: function (genre) {
-      return it.collection.update(genre);
+      var existing = it.collection.findOne({id: genre.id});
+      existing.title = genre.title;
+      return it.collection.update(existing);
     },
 
     findAll: function () {

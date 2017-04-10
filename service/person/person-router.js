@@ -25,6 +25,10 @@
 
       .post('/', function (request, response) {
         response.json(imports.repository.create(request.body));
+      })
+
+      .put('/', function (request, response) {
+        response.json(imports.repository.update(request.body));
       });
 })({
 

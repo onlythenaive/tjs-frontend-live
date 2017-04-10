@@ -7,13 +7,20 @@
   module.exports = {
 
     create: function (band) {
-      band.id = imports.uuid();
-      band.createdAt = Date.now();
-      return it.collection.insertOne(band);
+      var newBand = {
+        id: imports.uuid(),
+        title: band.title,
+        createdAt: Date.now(),
+        genreIds: band.genreIds
+      };
+      return it.collection.insertOne(newBand);
     },
 
     update: function (band) {
-      return it.collection.update(band);
+      var existing = it.collection.findOne({id: band.id});
+      existing.title = band.title;
+      existing.genreIds = band.genreIds;
+      return it.collection.update(existing);
     },
 
     findAll: function () {
@@ -36,5 +43,6 @@
 
   uuid: require('uuid/v4'),
 
+  genres: require('../genre/genre-repository'),
   database: require('../utility/database')
 });

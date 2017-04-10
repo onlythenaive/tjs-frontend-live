@@ -7,13 +7,22 @@
   module.exports = {
 
     create: function (person) {
-      person.id = imports.uuid();
-      person.createdAt = Date.now();
-      return it.collection.insertOne(person);
+      var newPerson = {
+        id: imports.uuid(),
+        firstname: person.firstname,
+        lastname: person.lastname,
+        bandId: person.bandId,
+        createdAt: Date.now()
+      };
+      return it.collection.insertOne(newPerson);
     },
 
     update: function (person) {
-      return it.collection.update(person);
+      var existing = it.collection.findOne({id: person.id});
+      existing.firstname = person.firstname;
+      existing.lastname = person.lastname;
+      existing.bandId = person.bandId;
+      return it.collection.update(existing);
     },
 
     findAll: function () {
