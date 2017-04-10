@@ -51,7 +51,9 @@ $(function () {
      $.ajax({
        type: "POST",
        url: "http://localhost:3000/data/genres",
-       data: JSON.stringify({title: newGenreTitle.val()}),
+       data: JSON.stringify({
+         title: newGenreTitle.val()
+       }),
        contentType: "application/json",
        success: getGenres
      });
@@ -89,7 +91,26 @@ $(function () {
       success: function (response) {
         
         response.forEach(function (item) {
-          var listItem = $("<li></li>").text(item.title);
+          var listItem = $("<li></li>");
+          var bandTitle = $("<span></span>").text(item.title);
+          var bandNewTitle = $("<input></input>");
+          var updateBandTitle = $("<input></input>").addClass("btn btn-info").val("Update Title");
+          listItem.append(bandTitle);
+          listItem.append(bandNewTitle);
+          listItem.append(updateBandTitle);
+          updateBandTitle.click(function () {
+             $.ajax({
+               type: "PUT",
+               url: "http://localhost:3000/data/bands",
+               data: JSON.stringify({
+                 id: item.id,
+                 title: bandNewTitle.val(),
+                 genreIds: item.genreIds
+               }),
+               contentType: "application/json",
+               success: getBands
+             });
+          });
           bandList.append(listItem);
         });
       }
@@ -110,6 +131,9 @@ $(function () {
        success: getBands
      });
   });
+
+  
+  
 });
 
 
