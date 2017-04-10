@@ -26,3 +26,90 @@ $(function () {
   
 });
 
+$(function () {
+
+  var genreList = $("#genreList");
+  var newGenreTitle = $("#newGenreTitle");
+
+  function getGenres() {
+    genreList.empty();
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3000/data/genres",
+      success: function (response) {
+        response.forEach(function (item) {
+          var listItem = $("<li></li>").text(item.title);
+          genreList.append(listItem);
+        });
+      }
+    });
+  }
+
+  $("#getGenreList").click(getGenres);
+   
+   $("#addGenre").click(function () {
+     $.ajax({
+       type: "POST",
+       url: "http://localhost:3000/data/genres",
+       data: JSON.stringify({title: newGenreTitle.val()}),
+       contentType: "application/json",
+       success: getGenres
+     });
+   });
+});
+
+
+$(function () {
+
+  var bandList = $("#bandList");
+  var newBandTitle = $("#newBandTitle");
+  var newBandGenre = $("#newBandGenre");
+
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/data/genres",
+    success: function (response) {
+      response.forEach(function (item) {
+        var selectOption = $("<option></option>").attr("value", item.id).text(item.title);
+        if (item.title === "Blues") {
+          selectOption.attr("selected", true);
+        }
+        newBandGenre.append(selectOption);
+      });
+    }
+  });
+
+  function getBands() {
+
+    bandList.empty();
+
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3000/data/bands",
+      success: function (response) {
+        
+        response.forEach(function (item) {
+          var listItem = $("<li></li>").text(item.title);
+          bandList.append(listItem);
+        });
+      }
+    });
+  }
+
+  $("#getBandList").click(getBands);
+  
+  $("#addBand").click(function() {
+     $.ajax({
+       type: "POST",
+       url: "http://localhost:3000/data/bands",
+       data: JSON.stringify({
+         title: newBandTitle.val(),
+         genreIds: [newBandGenre.val()]
+       }),
+       contentType: "application/json",
+       success: getBands
+     });
+  });
+});
+
+
